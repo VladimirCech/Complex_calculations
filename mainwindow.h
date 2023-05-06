@@ -23,7 +23,9 @@ public:
     ~MainWindow();
 
     Factorial *factorialCalculation;
-    QPlainTextEdit *factResultTextField;
+    QPlainTextEdit *factResultTextField = ui->factOutput;
+    QPushButton *factPauseButton = ui->factPauseButton;
+    QPushButton *factContinueButton = ui->factCancelButton;
 
 signals:
     void startFactCalculation(int value);
@@ -35,7 +37,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-
 };
 
 #endif // MAINWINDOW_H

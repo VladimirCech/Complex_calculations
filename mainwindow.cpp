@@ -3,26 +3,26 @@
 MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
-    factResultTextField = findChild<QPlainTextEdit *>("factOutput");
-//    factResultTextField->moveToThread(&factThread);
 
     factorialCalculation = new Factorial();
     factorialCalculation->moveToThread(&factThread);
     factThread.start();
 
+    connect(&factThread, &QThread::finished, factorialCalculation, &QObject::deleteLater);
     connect(this, &MainWindow::startFactCalculation, factorialCalculation, &Factorial::startFactCalculation);
-    connect(factorialCalculation, SIGNAL(factCalculationResult(QString)), this, SLOT(on_factResultReady(QString)));
-
+    connect(factorialCalculation, &Factorial::factCalculationResult, this, &MainWindow::on_factResultReady);
 
 }
 
 MainWindow::~MainWindow() {
     delete ui;
+    factThread.quit();
+    factThread.wait();
 }
 
 
 void MainWindow::on_factCalculateButton_clicked() {
-    QSpinBox *factInput = findChild<QSpinBox *>("factInput"); // získání pointeru na QSpinBox s názvem "spinBox"
+    QSpinBox *factInput = ui->factInput;
     int value = factInput->value();
     emit startFactCalculation(value);
     factResultTextField->clear();

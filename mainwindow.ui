@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>799</width>
-    <height>597</height>
+    <width>542</width>
+    <height>584</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -82,6 +82,34 @@
          <widget class="QPushButton" name="factCalculateButton">
           <property name="text">
            <string>Vypočítej</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="factPauseButton">
+          <property name="text">
+           <string>Pozastavit</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="factContinueButton">
+          <property name="text">
+           <string>Pokračovat</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="factCancelButton">
+          <property name="text">
+           <string>Zrušit</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QProgressBar" name="factProgressBar">
+          <property name="value">
+           <number>24</number>
           </property>
          </widget>
         </item>
@@ -172,6 +200,34 @@
          </widget>
         </item>
         <item>
+         <widget class="QPushButton" name="primePauseButton">
+          <property name="text">
+           <string>Pozastavit</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="primeContinueButton">
+          <property name="text">
+           <string>Pokračovat</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="primeCancelButton">
+          <property name="text">
+           <string>Zrušit</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QProgressBar" name="primeProgressBar">
+          <property name="value">
+           <number>24</number>
+          </property>
+         </widget>
+        </item>
+        <item>
          <spacer name="verticalSpacer_2">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
@@ -208,7 +264,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>799</width>
+     <width>542</width>
      <height>23</height>
     </rect>
    </property>

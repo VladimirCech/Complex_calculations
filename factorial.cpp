@@ -4,8 +4,6 @@
 using namespace std;
 #define size 100000000
 
-//int fact(int x, int* ar, int ar_size);
-
 int Factorial::fact(int x, int *ar, int ar_size) {
     int c = 0;
     for (int i = 0; i < ar_size; i++) {
@@ -37,8 +35,7 @@ void Factorial::factorial(int n) {
     }
 
     emit factCalculationResult(result);
-    cout<<endl;
-
+    cout << endl;
 
 
     delete[] ar;
