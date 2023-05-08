@@ -23,16 +23,19 @@ public:
     ~MainWindow();
 
     Factorial *factorialCalculation;
-    QPlainTextEdit *factResultTextField = ui->factOutput;
-    QPushButton *factPauseButton = ui->factPauseButton;
-    QPushButton *factContinueButton = ui->factCancelButton;
+    QPlainTextEdit *factResultTextField;
+//    std::atomic<bool> cancelFlag{ false };
 
 signals:
     void startFactCalculation(int value);
+    void cancelFactCalculation();
+    void pauseFactCalculation();
 
 private slots:
 
     void on_factCalculateButton_clicked();
+    void on_factCancelButton_clicked();
+    void on_factPauseButton_clicked();
     void on_factResultReady(QString result);
 
 private:

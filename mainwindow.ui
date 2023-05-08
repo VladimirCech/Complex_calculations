@@ -87,20 +87,19 @@
         </item>
         <item>
          <widget class="QPushButton" name="factPauseButton">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="text">
            <string>Pozastavit</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="factContinueButton">
-          <property name="text">
-           <string>Pokračovat</string>
-          </property>
-         </widget>
-        </item>
-        <item>
          <widget class="QPushButton" name="factCancelButton">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="text">
            <string>Zrušit</string>
           </property>
@@ -203,13 +202,6 @@
          <widget class="QPushButton" name="primePauseButton">
           <property name="text">
            <string>Pozastavit</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="primeContinueButton">
-          <property name="text">
-           <string>Pokračovat</string>
           </property>
          </widget>
         </item>
