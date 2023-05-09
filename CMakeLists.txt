@@ -21,6 +21,8 @@ set(PROJECT_SOURCES
         mainwindow.ui
         factorial.cpp
         factorial.h
+        primes.cpp
+        primes.h
         )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

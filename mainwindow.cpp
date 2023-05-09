@@ -3,13 +3,16 @@
 MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
-    factResultTextField = ui->factOutput;
     ui->factProgressBar->reset();
-    ui->primeProgressBar->reset();
+    ui->primesProgressBar->reset();
 
     factorialCalculation = new Factorial();
     factorialCalculation->moveToThread(&factThread);
     factThread.start();
+
+    primesCalculation = new Primes();
+    primesCalculation->moveToThread(&primesThread);
+    primesThread.start();
 
     connect(&factThread, &QThread::finished, factorialCalculation, &QObject::deleteLater);
     connect(this, &MainWindow::startFactCalculation, factorialCalculation, &Factorial::startFactCalculation);
@@ -21,12 +24,20 @@ MainWindow::MainWindow(QWidget *parent)
     connect(factorialCalculation, &Factorial::progressValueChanged, ui->factProgressBar, &QProgressBar::setValue);
 
 
+    connect(&primesThread, &QThread::finished, primesCalculation, &QObject::deleteLater);
+    connect(this, &MainWindow::startPrimesCalculation, primesCalculation, &Primes::startPrimesCalculation);
+
+
 }
 
 MainWindow::~MainWindow() {
+    on_factCancelButton_clicked();
     delete ui;
     factThread.quit();
     factThread.wait();
+
+    primesThread.quit();
+    primesThread.wait();
 }
 
 
@@ -34,14 +45,24 @@ void MainWindow::on_factCalculateButton_clicked() {
     QSpinBox *factInput = ui->factInput;
     int value = factInput->value();
     emit startFactCalculation(value);
-    factResultTextField->clear();
+    ui->factOutput->clear();
     ui->factPauseButton->setEnabled(true);
     ui->factCancelButton->setEnabled(true);
 
 }
 
+void MainWindow::on_primesCalculateButton_clicked() {
+    QSpinBox *primesInput = ui->primesInput;
+    int value = primesInput->value();
+    emit startPrimesCalculation(value);
+    ui->primesOutput->clear();
+    ui->primesPauseButton->setEnabled(true);
+    ui->primesCancelButton->setEnabled(true);
+
+}
+
 void MainWindow::on_factResultReady(QString result) {
-    factResultTextField->insertPlainText(result);
+    ui->factOutput->insertPlainText(result);
     ui->factPauseButton->setEnabled(false);
     ui->factCancelButton->setEnabled(false);
 }

@@ -180,40 +180,46 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="primeInput"/>
+           <widget class="QSpinBox" name="primesInput"/>
           </item>
          </layout>
         </item>
         <item>
-         <widget class="QPlainTextEdit" name="primeOutput">
+         <widget class="QPlainTextEdit" name="primesOutput">
           <property name="readOnly">
            <bool>true</bool>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="primeCalculateButton">
+         <widget class="QPushButton" name="primesCalculateButton">
           <property name="text">
            <string>Vypočítej</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="primePauseButton">
+         <widget class="QPushButton" name="primesPauseButton">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="text">
            <string>Pozastavit</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="primeCancelButton">
+         <widget class="QPushButton" name="primesCancelButton">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="text">
            <string>Zrušit</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QProgressBar" name="primeProgressBar">
+         <widget class="QProgressBar" name="primesProgressBar">
           <property name="value">
            <number>24</number>
           </property>
