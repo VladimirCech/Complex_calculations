@@ -55,6 +55,7 @@ void MainWindow::on_factCalculateButton_clicked() {
     ui->factOutput->clear();
     ui->factPauseButton->setEnabled(true);
     ui->factCancelButton->setEnabled(true);
+    ui->factCalculateButton->setEnabled(false);
 
 }
 
@@ -65,6 +66,8 @@ void MainWindow::on_primesCalculateButton_clicked() {
     ui->primesOutput->clear();
     ui->primesPauseButton->setEnabled(true);
     ui->primesCancelButton->setEnabled(true);
+    ui->primesCalculateButton->setEnabled(false);
+
 
 }
 
@@ -72,12 +75,17 @@ void MainWindow::on_factResultReady(QString result) {
     ui->factOutput->insertPlainText(result);
     ui->factPauseButton->setEnabled(false);
     ui->factCancelButton->setEnabled(false);
+    ui->factCalculateButton->setEnabled(true);
+
+
 }
 
 void MainWindow::on_primesResultReady(QString result) {
     ui->primesOutput->insertPlainText(result);
     ui->primesPauseButton->setEnabled(false);
     ui->primesCancelButton->setEnabled(false);
+    ui->primesCalculateButton->setEnabled(true);
+
 }
 
 void MainWindow::on_factCancelButton_clicked() {
@@ -85,6 +93,8 @@ void MainWindow::on_factCancelButton_clicked() {
     ui->factPauseButton->setEnabled(false);
     ui->factCancelButton->setEnabled(false);
     ui->factPauseButton->setText("Pozastavit");
+    ui->factCalculateButton->setEnabled(true);
+
 }
 
 void MainWindow::on_primesCancelButton_clicked() {
@@ -92,6 +102,8 @@ void MainWindow::on_primesCancelButton_clicked() {
     ui->primesPauseButton->setEnabled(false);
     ui->primesCancelButton->setEnabled(false);
     ui->primesPauseButton->setText("Pozastavit");
+    ui->primesCalculateButton->setEnabled(true);
+
 }
 
 
