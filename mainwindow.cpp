@@ -34,11 +34,11 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this, &MainWindow::pausePrimesCalculation, primesCalculation, &Primes::pausePrimesCalculation,
             Qt::DirectConnection);
 
-
 }
 
 MainWindow::~MainWindow() {
     on_factCancelButton_clicked();
+    on_primesCancelButton_clicked();
     delete ui;
     factThread.quit();
     factThread.wait();
