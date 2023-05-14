@@ -37,9 +37,9 @@ void Factorial::startFactCalculation(int number) {
             QEventLoop loop;
             QTimer::singleShot(100, &loop, SLOT(quit()));
             loop.exec();
-
         }
-        int progress = (double)x / number * 100;
+
+        int progress = (double) x / number * 100;
         emit progressValueChanged(progress);
     }
 
@@ -50,8 +50,7 @@ void Factorial::startFactCalculation(int number) {
     }
 
     emit factCalculationResult(result);
-    cout << endl;
-
+//    cout << endl;
 
     delete[] ar;
 }

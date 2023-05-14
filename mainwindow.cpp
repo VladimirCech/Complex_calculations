@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     primesCalculation->moveToThread(&primesThread);
     primesThread.start();
 
+//    Factorial connect functions
     connect(&factThread, &QThread::finished, factorialCalculation, &QObject::deleteLater);
     connect(this, &MainWindow::startFactCalculation, factorialCalculation, &Factorial::startFactCalculation);
     connect(this, &MainWindow::cancelFactCalculation, factorialCalculation, &Factorial::cancelFactCalculation,
@@ -23,9 +24,15 @@ MainWindow::MainWindow(QWidget *parent)
     connect(factorialCalculation, &Factorial::factCalculationResult, this, &MainWindow::on_factResultReady);
     connect(factorialCalculation, &Factorial::progressValueChanged, ui->factProgressBar, &QProgressBar::setValue);
 
-
+//    Primes connect functions
     connect(&primesThread, &QThread::finished, primesCalculation, &QObject::deleteLater);
     connect(this, &MainWindow::startPrimesCalculation, primesCalculation, &Primes::startPrimesCalculation);
+    connect(primesCalculation, &Primes::primesCalculationResult, this, &MainWindow::on_primesResultReady);
+    connect(primesCalculation, &Primes::progressValueChanged, ui->primesProgressBar, &QProgressBar::setValue);
+    connect(this, &MainWindow::cancelPrimesCalculation, primesCalculation, &Primes::cancelPrimesCalculation,
+            Qt::DirectConnection);
+    connect(this, &MainWindow::pausePrimesCalculation, primesCalculation, &Primes::pausePrimesCalculation,
+            Qt::DirectConnection);
 
 
 }
@@ -67,11 +74,24 @@ void MainWindow::on_factResultReady(QString result) {
     ui->factCancelButton->setEnabled(false);
 }
 
+void MainWindow::on_primesResultReady(QString result) {
+    ui->primesOutput->insertPlainText(result);
+    ui->primesPauseButton->setEnabled(false);
+    ui->primesCancelButton->setEnabled(false);
+}
+
 void MainWindow::on_factCancelButton_clicked() {
     emit cancelFactCalculation();
     ui->factPauseButton->setEnabled(false);
     ui->factCancelButton->setEnabled(false);
     ui->factPauseButton->setText("Pozastavit");
+}
+
+void MainWindow::on_primesCancelButton_clicked() {
+    emit cancelPrimesCalculation();
+    ui->primesPauseButton->setEnabled(false);
+    ui->primesCancelButton->setEnabled(false);
+    ui->primesPauseButton->setText("Pozastavit");
 }
 
 
@@ -83,5 +103,15 @@ void MainWindow::on_factPauseButton_clicked() {
         pauseButton->setText("Pokračovat");
     }
     emit pauseFactCalculation();
+}
+
+void MainWindow::on_primesPauseButton_clicked() {
+    QPushButton *pauseButton = ui->primesPauseButton;
+    if (pauseButton->text() == "Pokračovat") {
+        pauseButton->setText("Pozastavit");
+    } else {
+        pauseButton->setText("Pokračovat");
+    }
+    emit pausePrimesCalculation();
 }
 

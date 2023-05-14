@@ -30,15 +30,20 @@ signals:
     void startFactCalculation(int value);
     void startPrimesCalculation(int value);
     void cancelFactCalculation();
+    void cancelPrimesCalculation();
     void pauseFactCalculation();
+    void pausePrimesCalculation();
 
 private slots:
 
     void on_factCalculateButton_clicked();
     void on_primesCalculateButton_clicked();
     void on_factCancelButton_clicked();
+    void on_primesCancelButton_clicked();
     void on_factPauseButton_clicked();
+    void on_primesPauseButton_clicked();
     void on_factResultReady(QString result);
+    void on_primesResultReady(QString result);
 
 private:
     Ui::MainWindow *ui;
